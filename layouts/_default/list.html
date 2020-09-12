@@ -5,6 +5,20 @@
 {{     .Content }}
 {{   end }}
 
+<!--post list & pagination-->
+{{ if and ($.Site.Params.showPaginator) (or (and ($.Site.Params.showPaginatorOnSection) (eq .Kind "section"))) (true) }}
+{{ $pag := .Paginate (.Pages) }}
+{{   if gt $pag.TotalPages 0 }}
+<h2>Posts</h2>
+{{   end }}
+<ul class="article-list">
+  {{ range .Paginator.Pages }}
+  <li><a href="{{.URL}}">{{.Title}} <span style="float:right">{{dateFormat "Monday, Jan 2, 2006" .Date}}</span></a></li>
+  {{ end }}
+</ul>
+{{ partial "paginator.html" (dict "context" . "paginator" $pag) }}
+{{ end }}
+
 <!--taxonomy-->
 {{   if or (eq .Kind "taxonomy") (eq .Kind "term") }}
 <ul>
