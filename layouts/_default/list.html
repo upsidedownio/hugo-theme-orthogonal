@@ -7,7 +7,14 @@
 
 <!--post list & pagination-->
 {{ if and ($.Site.Params.showPaginator) (or (and ($.Site.Params.showPaginatorOnSection) (eq .Kind "section"))) (true) }}
-{{ $pag := .Paginate (.Pages) }}
+{{ $pages := .Pages }}
+{{ $currentLang := .Lang }}
+{{ range .AllTranslations }}
+{{   if not (eq $currentLang .Lang) }}
+{{     $pages = $pages | lang.Merge .Pages }}
+{{   end }}
+{{ end }}
+{{ $pag := .Paginate ($pages) }}
 {{   if gt $pag.TotalPages 0 }}
 <h2>Posts</h2>
 {{   end }}
