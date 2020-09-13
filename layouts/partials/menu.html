@@ -41,7 +41,7 @@
         {{ range sort . "Weight" }}
           <li>
             {{ .Pre }}
-              <a class="padding" href="{{.URL | absLangURL }}">
+              <a class="padding" href="{{.RelPermalink | absLangURL }}">
                 {{ safeHTML .Name }}
               </a>
             {{ .Post }}
