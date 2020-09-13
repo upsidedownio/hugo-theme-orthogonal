@@ -5,9 +5,9 @@
     <span>
       {{ $expandMessage := T "Expand-title" }}
       {{ if .IsNamedParams }}
-      {{.Get "default" | default $expandMessage }}
+      {{   .Get "default" | default $expandMessage }}
       {{ else }}
-      {{.Get 0 | default $expandMessage }}
+      {{   .Get 0 | default $expandMessage }}
       {{ end }}
     </span>
   </div>

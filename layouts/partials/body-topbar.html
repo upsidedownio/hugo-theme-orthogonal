@@ -16,6 +16,7 @@
   </div>
   {{   end }}
   {{ end }}
+
   {{ $toc := (and (not .Params.disableToc) (not .Params.chapter)) }}
   <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
     <span id="sidebar-toggle-span">
@@ -35,6 +36,7 @@
     {{ end }}
     </span>
   </div>
+
   {{ if $toc }}
   {{   partial "toc.html" . }}
   {{ end }}
