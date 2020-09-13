@@ -1,0 +1,26 @@
+[Search-placeholder]
+other = "검색..."
+
+[Clear-History]
+other = "방문이력 지우기"
+
+[Attachments-label]
+other = "첨부파일"
+
+[title-404]
+other = "에러"
+
+[message-404]
+other = "헉. 페이지가 없는것 같네요 ¯\\_(ツ)_/¯."
+
+[Go-to-homepage]
+other = "메인페이지로 가기"
+
+[Edit-this-page]
+other = "이 페이지 편집"
+
+[Shortcuts-Title]
+other = "More"
+
+[Expand-title]
+other = "더 보기..."
