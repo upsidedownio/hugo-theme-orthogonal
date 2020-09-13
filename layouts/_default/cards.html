@@ -1,0 +1,40 @@
+{{ define "content" }}
+
+<!--section-->
+{{   if eq .Kind "section" }}
+{{     .Content }}
+{{   end }}
+
+<!--post list & pagination-->
+{{ if and ($.Site.Params.showPaginator) (or (and ($.Site.Params.showPaginatorOnSection) (eq .Kind "section"))) (true) }}
+{{ $pages := .Pages }}
+{{ $currentLang := .Lang }}
+{{ range .AllTranslations }}
+{{   if not (eq $currentLang .Lang) }}
+{{     $pages = $pages | lang.Merge .Pages }}
+{{   end }}
+{{ end }}
+{{ $pag := .Paginate ($pages) }}
+{{   if gt $pag.TotalPages 0 }}
+<!-- <h3>MEMO Posts</h3> -->
+{{   end }}
+<ul class="article-list">
+  {{ range .Paginator.Pages }}
+  <li><a href="{{.URL}}">{{.Title}} <span style="float:right">{{dateFormat "Monday, Jan 2, 2006" .Date}}</span></a></li>
+  {{ .Content }}
+  <hr/>
+  {{ end }}
+</ul>
+{{ partial "paginator.html" (dict "context" . "paginator" $pag) }}
+{{ end }}
+
+<!--taxonomy-->
+{{   if or (eq .Kind "taxonomy") (eq .Kind "term") }}
+<ul>
+  {{ range .Pages }}
+  <li><a href="{{.RelPermalink}}">{{.Title}}</a></li>
+  {{ end }}
+</ul>
+{{   end }}
+
+{{ end }}
